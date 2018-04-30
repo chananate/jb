@@ -1,0 +1,104 @@
+<?php
+session_start();
+?>
+<html>
+<head>
+<title>ThaiCreate.Com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+</body>
+</html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>J&B Restuarant and Service</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="asubtleorange.css" />
+</head>
+<body background="images/banner.jpg">
+<div id="page"> 
+    <div id="header">
+    	<div class="title">J&B Restuarant and Service</div>
+        <div class="subText"></div>
+    </div>
+    <div id="bar">
+        <div class="menuLink"><a href="index.html">Home</a></div>
+        <div class="menuLink"><a href="index.html">Food Menu</a></div>
+        <div class="menuLink"><a href="index.html">About</a></div>
+		<div class="menuLink"><a href="login.html">Login</a></div>
+    </div>
+    <div id="pageContent">
+		<div class="articleTitle"></div>
+			<div class="articleContent">
+							<?php
+						mysql_connect("127.0.0.1","root","");
+						mysql_select_db("jb shop");
+						mysql_query("SET NAMES UTF8");
+						?>
+						
+						  <form action="update.php" method="post">
+						<table width="700"  border="1" bordercolor="#FFFFFF">
+						  <tr style="background-color:#FF99FF;color:#000000">
+							<td width="101" style="text-align:center">Picture</td>
+							<td width="101" style="text-align:center">FoodID</td>
+							<td width="82" style="text-align:center">FoodName</td>
+							<td width="82" style="text-align:center">Price</td>
+							<td width="79" style="text-align:center">Amount</td>
+							<td width="79" style="text-align:center">Total</td>
+							<td width="10" style="text-align:center">Delete</td>
+						  </tr>
+						  <?php
+						  $Total = 0;
+						  $SumTotal = 0;
+
+						  for($i=0;$i<=(int)$_SESSION["intLine"];$i++)
+						  {
+							  if($_SESSION["strFoodID"][$i] != "")
+							  {
+								$strSQL = "SELECT * FROM Food WHERE FoodID = '".$_SESSION["strFoodID"][$i]."' ";
+								$objQuery = mysql_query($strSQL)  or die(mysql_error());
+								$objResult = mysql_fetch_array($objQuery);
+								$Total = $_SESSION["strAmount"][$i] * $objResult["Price"];
+								$SumTotal = $SumTotal + $Total;
+							  ?>
+							  <tr>
+								<td style="text-align:center;background-color:#FFCCFF;color:#000000"><img src="img/<?php echo $objResult["Picture"];?>" width="85px" height="85px"></td>
+								<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo $_SESSION["strFoodID"][$i];?><input type="hidden" name="txtFoodID<?php echo $i;?>" value="<?php echo $_SESSION["strFoodID"][$i];?>"></td>
+								<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo $objResult["FoodName"];?></td>
+								<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo $objResult["Price"];?></td>
+								<td style="text-align:center;background-color:#FFFAF0;color:#000000"><input type="text" name="txtAmount<?php echo $i;?>" value="<?php echo $_SESSION["strAmount"][$i];?>" size="2"></td>
+								<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo number_format($Total,2);?></td>
+								<td style="text-align:center;background-color:#FFFAF0;color:#000000"><a href="delete.php?Line=<?php echo $i;?>" style="color:red">x</a></td>
+							  </tr>
+							
+							  <?php
+							  }
+						  }
+						  ?>
+						</table>
+						<table width="700"  border="1" bordercolor="#FFFFFF">
+						  <tr>
+						  <td style="text-align:center ;background-color:#00FF33;color:#000000" width="117px"><input type="submit" value="Update"></td>
+						  <td style="text-align:center ;background-color:#00FF33;color:#000000">Total Price : <?php echo number_format($SumTotal,2);?> บาท</td>
+						  </tr>
+						  </table>
+						</form>
+						<br><a href="index.php" style="color:#FFFFFF;margin-left:90px">Back to Food Menu</a>
+						<?php
+							if($SumTotal > 0)
+							{
+						?>
+							| <a href="checkout.php" style="color:#FFFFFF">MakeOrder</a>
+						<?php
+							}
+						?>
+						<?php
+						mysql_close();
+						?>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<style>
+.block-1f {
+    width: 180px;
+    height: 180px;
+    margin: 10px;
+    background: #0E9F98;
+    float: left;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #888888;
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+</style>

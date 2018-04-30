@@ -1,0 +1,77 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>J&B Restuarant and Service</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="asubtleorange.css" />
+	<style>
+		.block-1f {
+			width: 180px;
+			height: 180px;
+			margin: 10px;
+			background: #0E9F98;
+			float: left;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px #888888;
+			font-size: 25px;
+			margin-bottom: 50px;
+		}
+	</style>
+</head>
+<body background="images/banner.jpg">
+<div id="page"> 
+    <div id="header">
+    	<div class="title">J&B Restuarant and Service</div>
+        <div class="subText"></div>
+    </div>
+    <div id="bar">
+        <div class="menuLink"><a href="home.php">Home</a></div>
+        <div class="menuLink"><a href="foodmenu.php">Food Menu</a></div>
+        <div class="menuLink"><a href="about.php">About</a></div>
+		<div class="menuLink"><a href="login.php">Login</a></div>
+    </div>
+    <div id="pageContent">
+				<div style="margin-bottom:30px;margin-left:30px ;margin-top:20px"><b><font size="80">รายการอาหารแนะนำ</font></b></div>
+				
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ข้าวผัด.jpg" width="180px" height="180px">
+					ข้าวผัด
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ข้าว8]6dะปิ.jpg" width="180px" height="180px">
+					ข้าวคลุกกะปิ
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ผัดขี้เมา.jpg" width="180px" height="180px">
+					ผัดขี้เมา
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ผัดกระเพรา.jpg" width="180px" height="180px">
+					ผัดกระเพรา
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ผัดเผ็ด.jpg" width="180px" height="180px">
+					ผัดเผ็ด
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ผัดพริกแกง.jpg" width="180px" height="180px">
+					ผัดพริกแกง
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ข้าวอบสัปปะรด.png" width="180px" height="180px">
+					ข้าวอบสัปปะรด
+				</div>
+				<div class="block-1f" style="text-align:center">
+					<img src="images/ข้าวผัดต้มยำ.jpg" width="180px" height="180px">
+					ข้าวผัดต้มยำ
+				</div>
+
+
+
+	</div>
+</div>
+</body>
+</html>

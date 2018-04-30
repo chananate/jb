@@ -1,0 +1,30 @@
+
+<head>
+	<title>J&B Restuarant and Service</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="asubtleorange.css" />
+</head>
+<body background="images/banner.jpg">
+<div id="page"> 
+    <div id="header">
+    	<div class="title">J&B Restuarant and Service</div>
+        <div class="subText"></div>
+    </div>
+    <div id="bar">
+        <div class="menuLink"><a href="home.php">Home</a></div>
+        <div class="menuLink"><a href="foodmenu.php">Food Menu</a></div>
+        <div class="menuLink"><a href="about.php">About</a></div>
+		<div class="menuLink"><a href="login.php">Login</a></div>
+    </div>
+    <div id="pageContent">
+		<div class="articleTitle"></div>
+			<div class="articleContent">
+				Finish Your Order. <br><br>
+
+				<a href="view_order.php?OrderID=<?php echo $_GET["OrderID"];?>">View Order</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

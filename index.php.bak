@@ -1,0 +1,70 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>J&B Restuarant and Service</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="asubtleorange.css" />
+</head>
+<body>
+<div id="page"> 
+    <div id="header">
+    	<div class="title">J&B Restuarant and Service</div>
+        <div class="subText"></div>
+    </div>
+    <div id="bar">
+        <div class="menuLink"><a href="home.php">Home</a></div>
+        <div class="menuLink"><a href="foodmenu.php">Food Menu</a></div>
+        <div class="menuLink"><a href="about.php">About</a></div>
+		<div class="menuLink"><a href="login.php">Login</a></div>
+    </div>
+    <div id="pageContent">
+		<div class="articleTitle"></div>
+			<div class="articleContent">
+					<?php
+					mysql_connect("127.0.0.1","root","");
+					mysql_select_db("jb shop");
+					mysql_query("SET NAMES UTF8");
+					$strSQL = "SELECT * FROM food";
+					$objQuery = mysql_query($strSQL)  or die(mysql_error());
+					?>
+					<form>
+					<table width="700" border="1" bordercolor="#FFFFFF">
+					  <tr style="background-color:#FF99FF;color:#000000">
+						<td width="50" style="text-align:center">Picture</td>
+						<td width="71" style="text-align:center">FoodID</td>
+						<td width="82" style="text-align:center">FoodName</td>
+						<td width="50" style="text-align:center">Price</td>
+						<td width="100" style="text-align:center">Amount</td>
+					  </tr>
+					  <?php
+					  while($objResult = mysql_fetch_array($objQuery))
+					  {
+					  ?>
+					  
+					  <tr>
+					  <form action="order.php" method="post">
+						<td style="text-align:center;background-color:#FFCCFF;color:#000000"><img src="img/<?php echo $objResult["Picture"];?>" width="150px" height="90px"></td>
+						<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo $objResult["FoodID"];?></td>
+						<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo $objResult["FoodName"];?></td>
+						<td style="text-align:center;background-color:#FFFAF0;color:#000000"><?php echo $objResult["Price"];?></td>
+						<td style="text-align:center;background-color:#FFFAF0;color:#000000"><input type="hidden" name="txtFoodID" value="<?php echo $objResult["FoodID"];?>" size="2"> <input type="text" name="txtQty" value="1" size="2"> <input type="submit" value="Add"></td>
+						</form>
+					  </tr>
+					  <?php
+					  }
+					  ?>
+					</table>
+					</form>
+					<br><a href="show.php" style="color:#FFFFFF;margin-left:90px">View DraftOrder</a> | <a href="clear.php" style="color:#FFFFFF">Clear</a> | <a href="view_order2.php" style="color:#FFFFFF">View OrderAll</a>
+					<?php
+					mysql_close();
+					?>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

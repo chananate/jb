@@ -1,0 +1,72 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<?php
+include "product.php";
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>A Subtle Orange by Bryant Smith</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="asubtleorange.css" />
+</head>
+<body background="images/banner.jpg">
+<div id="page"> 
+    <div id="header">
+    	<div class="title">J&B Restuarant and Service</div>
+        <div class="subText"></div>
+    </div>
+    <div id="bar">
+        <div class="menuLink"><a href="index.html">Home</a></div>
+        <div class="menuLink"><a href="index.html">Food Menu</a></div>
+        <div class="menuLink"><a href="index.html">Food Status</a></div>
+        <div class="menuLink"><a href="index.html">About</a></div>
+		<div class="menuLink"><a href="login.html">Login</a></div>
+    </div>
+    <div id="pageContent">
+		<div class="articleTitle">The Article Title</div>
+			<div class="articleContent">
+
+
+					<?php
+					mysql_connect("127.0.0.1","root","");
+					mysql_select_db("jb");
+					$strSQL = "SELECT * FROM product";
+					$objQuery = mysql_query($strSQL)  or die(mysql_error());
+					?>
+					<table width="450" border="1">
+					  <tr>
+						<td width="101">Picture</td>
+						<td width="101">ProductID</td>
+						<td width="82">ProductName</td>
+						<td width="50">Price</td>
+						<td width="100">Cart</td>
+					  </tr>
+					  <?php
+					  while($objResult = mysql_fetch_array($objQuery))
+					  {
+					  ?>
+					  <tr>
+					  <form action="order.php" method="post">
+						<td><img src="img/<?php echo $objResult["Picture"];?>"></td>
+						<td><?php echo $objResult["ProductID"];?></td>
+						<td><?php echo $objResult["ProductName"];?></td>
+						<td><?php echo $objResult["Price"];?></td>
+						<td><input type="hidden" name="txtProductID" value="<?php echo $objResult["ProductID"];?>" size="2"> <input type="text" name="txtQty" value="1" size="2"> <input type="submit" value="Add"></td>
+						</form>
+					  </tr>
+					  <?php
+					  }
+					  ?>
+					</table>
+					<br><br><a href="show.php">View Cart</a> | <a href="clear.php">Clear Cart</a>
+					<?php
+					mysql_close();
+					?>
+			</div>
+		</div>
+	</div>
+</div>
+    <div id="footer"><a href="http://www.aszx.net">web development</a> by <a href="http://www.bryantsmith.com">bryant smith</a></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>A Subtle Orange by Bryant Smith</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="asubtleorange.css" />
+</head>
+<body background="images/banner.jpg">
+<div id="page"> 
+    <div id="header">
+    	<div class="title">J&B Restuarant and Service</div>
+        <div class="subText"></div>
+    </div>
+    <div id="bar">
+        <div class="menuLink"><a href="home.php">Home</a></div>
+        <div class="menuLink"><a href="foodmenu.php">Food Menu</a></div>
+        <div class="menuLink"><a href="about.php">About</a></div>
+		<div class="menuLink"><a href="login.php">Login</a></div>
+    </div>
+    <div id="pageContent">
+				<div style="margin-bottom:50px;margin-left:342px ;margin-right:250px;margin-top:50px"><b><font size="80">Welcome</font></b></div>
+				<div style="margin-bottom:70px;margin-left:227px"><img src="images/ข้าวผัด.jpg" height="330px" width="490px" style="box-shadow: 5px 5px 5px #888888;border-radius: 5px;"></img></div>
+	</div>
+</div>
+</body>
+</html>

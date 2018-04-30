@@ -1,0 +1,176 @@
+html, body {
+text-align: center;
+}
+p {text-align: left;}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #333333 url(images/img01.gif) repeat-x;
+	text-align: justify;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #F1F5F8;
+	background: url(images/bg-bar.jpg) repeat;
+}
+*
+{
+  margin: 0 auto 0 auto;
+ text-align:left;}
+
+#header {
+	position:relative;
+	width: 990px;
+	height:99px;
+	margin-left:29px;
+	margin-right:21px;
+	background: url(images/bg-top.jpg) no-repeat;
+	border-radius: 8px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+#page
+{
+  margin: 0 auto 0 auto; 
+  display: table; 
+  height: 715px;  
+  position: relative; 
+  overflow: hidden; 
+  background: #CD853F;
+  width: 990px;
+  border-radius: 8px;
+	box-shadow: 5px 5px 5px #888888;
+	background: url(images/banner3.jpg) repeat;
+
+}
+
+
+.title
+{
+position:relative;
+left:30px;
+top:22px;
+text-align:left;
+font-family:Georgia, "Times New Roman", Times, serif;
+font-size:32px;
+font-weight:bold;
+color:#FFFFFF;
+}
+
+.subText
+{
+position:relative;
+left:62px;
+top:26px;
+text-align:left;
+font-family:Georgia, "Times New Roman", Times, serif;
+font-size:12px;
+font-weight:bold;
+color:#2D4E5B;
+}
+
+
+.articleTitle
+{
+text-align:left;
+padding-left:25px;
+padding-top:10px;
+padding-bottom:10px;
+color: #8FB359;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:22px;
+font-weight:bold;
+}
+
+.articleContent
+{
+width:auto;
+position:relative;
+padding-left:25px;
+color:#F8FBFC;
+text-align:left;
+font-family:Arial, Helvetica, sans-serif;
+line-height:27px;
+}
+
+#bar
+{
+	position:relative;
+	width: 990px;
+	height:57px;
+	margin-left:29px;
+	margin-right:21px;
+	background: url(images/bg-bar.jpg) no-repeat;
+	border-radius: 8px;
+	box-shadow: 5px 5px 5px #888888;
+	background-position: center-left;
+}
+
+.menuLink
+{
+	height:37px;
+	width: 105px;
+	text-align:center;
+	float:left;
+	font-family:Geneva, Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#EAD5A8;
+	padding-top:18px;
+}
+
+.menuLink a
+{
+	color:#192B33;
+}
+
+.menuLink a:hover
+{
+	color:#FF8000;
+}
+
+
+.menuLink:hover
+{
+	background: url(bar2.png) repeat-x;
+}
+
+a
+{
+text-decoration:none;
+color:#8FB359;
+}
+
+#pageContent
+{
+width: 870px;
+height:auto;
+padding-top:20px;
+padding-bottom:20px;
+}
+
+#footer {
+
+	width: 990px;
+	height:30px;
+	background: url(images/bg-footer.png) no-repeat;
+text-align:center;
+font-size:9px;
+color:#386172;
+padding-top:36px;
+}
+
+#footer a
+{
+font-size:10px;
+color:#386172;
+}
+
+
+html, body {
+text-align: center;
+}
+p {text-align: left;}
+
+
+
