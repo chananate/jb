@@ -18,9 +18,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 								exit();
 							}
 							
-						mysql_connect("127.0.0.1","root","");
-						mysql_select_db("jb_shop");
-						mysql_query("SET NAMES UTF8");
+							include 'connect.php';
 						
 						?>
 						<br><br><br><br>
@@ -45,8 +43,10 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 							  if($_SESSION["strFoodID"][$i] != "")
 							  {
 								$strSQL = "SELECT * FROM Food WHERE FoodID = '".$_SESSION["strFoodID"][$i]."' ";
-								$objQuery = mysql_query($strSQL)  or die(mysql_error());
-								$objResult = mysql_fetch_array($objQuery);
+								$objQuery = $connect->query($strSQL);
+								$objResult=$objQuery->fetch_assoc();
+
+								
 								// echo json_encode($_SESSION);
 								// echo sizeof($_SESSION["hif"]);
 								// exit();
@@ -104,7 +104,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 							}
 						?>
 						<?php
-						mysql_close();
+						//mysql_close();
 						?>
 			</div>
 		</div>

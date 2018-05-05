@@ -68,7 +68,7 @@
       </li>
 			<?php 
 			if(isset($_SESSION['empType']) && $_SESSION['empType']!=""){ 
-				if($_SESSION["empType"] =="ET1" && $_SESSION["empType"] =="ET2"){ ?>
+				if($_SESSION["empType"] =="ET1" || $_SESSION["empType"] =="ET2"){ ?>
 				<li class="nav-item">
 					<a class="nav-link" href="checkBill.php"> &nbsp;&nbsp;Check Bill &nbsp;&nbsp; </a>
 				</li>
@@ -103,7 +103,6 @@
       
 </ul>
 
-
   </div>
 </nav>
 
@@ -112,9 +111,6 @@
 	<form action="fsignup.php" method="post" style="margin-top:10%; margin-left:30%; margin-right:30% ">
 		<span id="txfm">Name</span><br>
 		<input type="text" name="name" id="name" placeholder="Name" class="form-control mb-2 mb-sm-0"><br><br>
-        <span id="txfm">Employee Type</span><br>
-		<input type="text" name="emptype" id="emptype" placeholder="Employee Type" class="form-control mb-2 mb-sm-0"><br><br>
-        <span style="color:black"><i>*หมายเหตุ ET1 - admin , ET2 - cashier , ET3 - employee </i></span><br><br>
         <span id="txfm">Username</span><br>
 		<input type="text"  onblur="checkUsername()" name="username" id="username" placeholder="Username" class="form-control mb-2 mb-sm-0"><br><br>
 		<span id="txfm">Password</span><br>

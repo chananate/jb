@@ -7,9 +7,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 }
 ?>
 					<?php
-					mysql_connect("127.0.0.1","root","");
-					mysql_select_db("jb_shop");
-					mysql_query("SET NAMES UTF8");
+					include 'connect.php';
 					?>
 					<br><br><br>
 					<center>
@@ -32,8 +30,8 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 						  if($_SESSION["strFoodID"][$i] != "")
 						  {
 							$strSQL = "SELECT * FROM food WHERE FoodID = '".$_SESSION["strFoodID"][$i]."' ";
-							$objQuery = mysql_query($strSQL)  or die(mysql_error());
-							$objResult = mysql_fetch_array($objQuery);
+							$objQuery = $connect->query($strSQL);
+							$objResult = $objQuery->fetch_assoc();
 							if($_SESSION["hif"][$i]==2){
 								$objResult["FoodPrice"]=$objResult["FoodPrice"]+5;
 							}
@@ -87,7 +85,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 							</select>
 							</td>
 							<td style="text-align:center;">
-						จำนวนลูกค้า <input type="text" name="txtClient" width="50"></td>
+						จำนวนลูกค้า <input type="number" name="txtClient" width="50" min="1" value="1"></td>
 						<td style="text-align:center;" width="127px"><input type="submit" value="Accept"></td>
 							</tr>
 					</table>
@@ -95,7 +93,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 					</center>
 					<br><br>
 					<?php
-					mysql_close();
+					//mysql_close();
 					?>
 			</div>
 		

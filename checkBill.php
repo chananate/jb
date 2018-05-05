@@ -5,10 +5,17 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 } ?>
 
 <br><br><br><br>
-<div style="margin-top:10%">
+<div style="margin-top:8%">
     <b>CHECK BILL</b><br><br>
-<form action="cb-ac.php" method="post">
-No. order <input type="text" name="idbill"> <input type="submit">
+<form action="cb-ac1.php" method="post">
+No. Order <input type="number" name="idbill" min="1"> <input type="submit">
+</form>
+</div>
+<br><br><br><br>
+<div>
+    <b>CLEAR TABLE</b><br><br>
+<form action="cb-ac2.php" method="post">
+No. Table <input type="number" name="idtb" min="1"> <input type="submit">
 </form>
 </div>
 

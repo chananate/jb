@@ -1,18 +1,21 @@
 
 <?php
 include 'headerr.php';
+if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
+	echo ('<script> alert("Not found any profile, Please login first."); window.location="login.php";</script>');
+	exit() ;
+}
 ?>
     <div id="pageContent">
 		<div class="articleTitle"></div>
 			<div class="articleContent">
 						<?php
-					mysql_connect("127.0.0.1","root","");
-					mysql_select_db("jb_shop");
-					mysql_query("SET NAMES UTF8");
+					include 'connect.php';
 					
 					$strSQL = "SELECT * FROM orders WHERE Orderid=".$_GET['OrderID'];
-					$objQuery = mysql_query($strSQL)  or die(mysql_error());
-					$objResult = mysql_fetch_array($objQuery);
+					$query1 = $connect->query($strSQL);
+					$objResult =$query1->fetch_assoc();
+
 					?>
 					<center>
 						<br><br><br><br><br>
@@ -40,14 +43,15 @@ include 'headerr.php';
 					$SumTotal = 0;
 
 					$strSQL2 = "SELECT * FROM orderitem";
-					$objQuery2 = mysql_query($strSQL2)  or die(mysql_error());
+					$objQuery2 = $connect->query($strSQL2);
 
-					while($objResult2 = mysql_fetch_array($objQuery2))
+					while($objResult2 = $objQuery2->fetch_assoc())
 					{
 						if($objResult2['Orderid']==$_GET['OrderID']){
 							$strSQL3 = "SELECT * FROM food WHERE FoodID = '".$objResult2["FoodID"]."' ";
-							$objQuery3 = mysql_query($strSQL3)  or die(mysql_error());
-							$objResult3 = mysql_fetch_array($objQuery3);
+							$query2 =$connect->query($strSQL3);
+							$objResult3 =$query2->fetch_assoc();
+							
 							$Total = $objResult2["OrderAmount"] * $objResult3["FoodPrice"];
 							$SumTotal = $SumTotal + $Total;
 
@@ -78,7 +82,7 @@ include 'headerr.php';
 					<!-- <br><a href="index.php" style="color:#FFFFFF;margin-left:90px">Back to Food Menu</a> -->
 					<br><br><a href="checkBill.php" style="color:#FFFFFF;"><button type="button" class="btn btn-danger">Check Bill</button></a>
 					<?php
-					mysql_close();
+					//mysql_close();
 					unset($_SESSION["intLine"]);
 					unset($_SESSION["strFoodID"]);
 					unset($_SESSION["strAmount"]);

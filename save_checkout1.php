@@ -2,51 +2,13 @@
 session_start();
 
 
-$serverName = "localhost";
-$userName = "root";
-$userPassword = "";
-$dbName = "jb_shop";
-$conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-$conn->query("set names utf8");
-
-
-
-	//$strSQL = $pdo->prepare("INSERT INTO orders(OrderDate) VALUES (". date("Y-m-d H:i:s").")");
-	
-
-  // $strSQL = "
-	// INSERT INTO orders (OrderDate)
-	// VALUES
-	// ('".date("Y-m-d H:i:s")."') 
-  // ";
-	// 
-	// $Total = 0;
-	// $SumTotal = 0;
-	// for($i=0;$i<=(int)$_SESSION["intLine"];$i++)
-	// {
-	// 	if($_SESSION["strFoodID"][$i] != "")
-	// 	{
-	// $strSQL0 = "SELECT * FROM Food WHERE FoodID = '".$_SESSION["strFoodID"][$i]."' ";
-	// $objQuery = mysql_query($strSQL0)  or die(mysql_error());
-	// $objResult = mysql_fetch_array($objQuery);
-	// if($_SESSION["hif"][$i]==2){
-	// 	$objResult["FoodPrice"]=$objResult["FoodPrice"]+5;
-	// }
-	// if($_SESSION["hif"][$i]==3){
-	// 	$objResult["FoodPrice"]=$objResult["FoodPrice"]+10;
-	// }
-	// $Total = $_SESSION["strAmount"][$i] * $objResult["FoodPrice"];
-	// $SumTotal = $SumTotal + $Total;
-	// echo $SumTotal;
-	// exit();
-	// 	}
-	// }
+include 'connect.php';
 
 	$_SESSION["tkh"]=0;
 	if($_POST["notable"]<16){
 		$_SESSION["noTable"]=$_POST["notable"];
 		$stsTable="UPDATE tables SET status = 0 WHERE TID='T".$_SESSION['noTable']."'";
-		$conn->query($stsTable); 
+		$query=$connect->query($stsTable);
 	}
 	if($_POST["notable"]==16){
 		$_SESSION["tkh"]=1;
@@ -61,10 +23,10 @@ $conn->query("set names utf8");
 		// echo $_SESSION['empID']." ".$_SESSION['empType']." ".$_SESSION['noTable']." ".$_SESSION['strSum']." ".$_POST['txtClient'];
 		// exit();
 		
-	$strSQL1 = "INSERT INTO orders (EmpID,TypeID,TID,OrderDate,AmountPrice,TotalCustomer,Takehome) VALUES ('".$_SESSION['empID']."','".$_SESSION['empType']."','T".$_SESSION['noTable']."','".date('Y-m-d H:i:s')."','".$_SESSION['strSum']."','".$_POST['txtClient']."','".$_SESSION['tkh']."')";
-	$conn->query($strSQL1); 
+	$strSQL1 = "INSERT INTO orders (EmpID,TypeID,TID,OrderDate,OrderTime,AmountPrice,TotalCustomer,Takehome) VALUES ('".$_SESSION['empID']."','".$_SESSION['empType']."','T".$_SESSION['noTable']."','".date('Y-m-d')."','".date('h:i:sa')."','".$_SESSION['strSum']."','".$_POST['txtClient']."','".$_SESSION['tkh']."')";
+	$query2=$connect->query($strSQL1);
 	
-	$strOrderID = mysqli_insert_id($conn);
+	$strOrderID = mysqli_insert_id($connect);
 	// echo json_encode($_POST),"\n";
 	// echo $strOrderID,"\n";
 	// echo $strSQL1,"\n";
@@ -89,7 +51,7 @@ $conn->query("set names utf8");
 		$strSQL4 = "INSERT INTO orderItem (OrderID,EmpID,TypeID,FoodID,TID,OrderAmount,OrderFoodPrice,ItemNote) VALUES('".$strOrderID."','".$_SESSION['empID']."','".$_SESSION['empType']."','".$_SESSION['strFoodID'][$i]."','T".$_SESSION['noTable']."','".$_SESSION['strAmount'][$i]."','".$_SESSION['strSum']."','".$_SESSION['strFoodNote'][$i]."')";
 		// mysql_query($strSQL) or die(mysql_error());
 		// $query2 = mysqli_query($conn,$strSQL4);
-		$conn->query($strSQL4); 
+		$query3=$connect->query($strSQL4);
 	  }
   }
   
@@ -100,7 +62,7 @@ $conn->query("set names utf8");
 //exit();
 
 
-header("Location: view_order2.php?OrderID=".$strOrderID);
+header("Location:view_order2.php?OrderID=".$strOrderID);
 // echo 'location : view_order2.php?OrderID='.$strOrderID;
 	}
 ?>

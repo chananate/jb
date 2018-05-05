@@ -1,9 +1,11 @@
-<?php include 'connect.php'; 
+<?php 
 session_start();
+include 'connect.php'; 
 if($_SESSION["empType"] !="ET1"){
-  echo ('<script> alert("Admin only!"); window.location="home.php";</script>');
+  echo ('<script> alert("admin only!."); window.location="home.php";</script>');
   exit() ;
 }  
+
 ?>
 <html>
 <head>
@@ -20,10 +22,7 @@ if($_SESSION["empType"] !="ET1"){
                 $('#example').dataTable();
         });
 </script>
-
-
 </head>
-
 <body id="dt_example" style="background:#f2e268">
 <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top">
 
@@ -39,15 +38,13 @@ if($_SESSION["empType"] !="ET1"){
       <li class="nav-item ">
         <a class="nav-link" href="home.php">HOME &nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="hot.php"> &nbsp;&nbsp;HOT &nbsp;&nbsp; </a>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="new.php"> &nbsp;&nbsp;TABLE &nbsp;&nbsp; </a>
       </li>
 			<?php 
 			if(isset($_SESSION['empType']) && $_SESSION['empType']!=""){ 
-				if($_SESSION["empType"] =="ET1" || $_SESSION["empType"] =="ET2"){ ?>
+				if($_SESSION["empType"] =="ET1" && $_SESSION["empType"] =="ET2"){ ?>
 				<li class="nav-item">
 					<a class="nav-link" href="checkBill.php"> &nbsp;&nbsp;Check Bill &nbsp;&nbsp; </a>
 				</li>
@@ -87,12 +84,7 @@ if($_SESSION["empType"] !="ET1"){
 
   </div>
 </nav>
-<center>
-back to the menu <br>
-<a href="indexf.php" ><button type="button" class="btn btn-outline-success btn-lg">Foods</button></a> 
-| <a href="indexd.php" ><button type="button" class="btn btn-outline-info btn-lg">Drinks</button></a>
 
-</center>
 <br>
 
 		<div id="container" style="margin-left:5%; margin-right:5%">
@@ -103,46 +95,36 @@ back to the menu <br>
 					<table id="example" class="table table-striped "style="width:70%"  >
             <thead>
 							<tr style="background-color:#FFC300;color:#000000">
-								<td width="50" style="text-align:center">FoodID</td>
-								<td width="80" style="text-align:center">FoodName</td>
-								<td width="30" style="text-align:center">price</td>
-								<td width="50" style="text-align:center">Status</td>
-								<td width="100" style="text-align:center">editmenu</td>
-                <td width="100" style="text-align:center">deletemenu</td>
+								<td width="50" style="text-align:center">EmpID</td>
+								<td width="80" style="text-align:center">EmpName</td>
+								<td width="30" style="text-align:center">EmpType</td>
+                                <td width="100" style="text-align:center">Edit</td>
+						
 							</tr>
 						</thead>
 						<tbody>
 					  <?php
 						
-						$strSQL = "SELECT * FROM food";
-            $result=$connect->query($strSQL);
+						$strSQL = "SELECT * FROM employee";
+                        $result=$connect->query($strSQL);
 
 						while($objResult=$result->fetch_assoc() ){
+                            if($objResult['TypeID']!='ET1'){
                        
 					  ?>
 					  <tr >
-					  	<form action="order.php" method="post">
-						<td style="text-align:center;background-color:#FDF8D9;color:#000000"><b><?php echo $objResult["FoodID"];?></b></td>
-						<td style="text-align:center;background-color:#FDF8D9;color:#000000"><?php echo $objResult["FoodName"];?></td>
-                        <td style="text-align:center;background-color:#FDF8D9;color:#000000"><?php echo $objResult["FoodPrice"];?> ฿ </td>
-						<?php if($objResult["FoodStatus"]==1){ ?>
-						<td style="text-align:center;background-color:#FDF8D9;color:green;font-size:1em;"><input type="hidden" name="txtFoodID" value="<?php echo $objResult["FoodID"];?>"> 
-						Left in stock</td>
-						<?php }else{ ?>
-						<td style="text-align:center;background-color:#FDF8D9;color:red;font-size:1em;">out of stock</td>
-						<?php } ?>						
-                        <td style="text-align:center;background-color:#FDF8D9;color:#000000"><a href='editorder.php?FoodID=<?=$objResult["FoodID"]?>'>แก้ไข</td>
-                        <td style="text-align:center;background-color:#FDF8D9;color:#000000"><a href='confirmDelete.php?FoodID=<?=$objResult["FoodID"]?>' >ลบ</a></td>
-            			</form>
+						<td style="text-align:center;background-color:#FDF8D9;color:#000000"><b><?php echo $objResult["EmpID"];?></b></td>
+						<td style="text-align:center;background-color:#FDF8D9;color:#000000"><?php echo $objResult["EmpName"];?></td>
+                        <td style="text-align:center;background-color:#FDF8D9;color:#000000"><?php echo $objResult["TypeID"];?></td>
+            			<td style="text-align:center;background-color:#FDF8D9;color:#000000"><a href='edittype.php?EmpID=<?= $objResult["EmpID"]?>'>edit</td>
 					  </tr>
 					  <?php
-                      
+                            }
                     }
 					  ?>
-					</table>		
-          </div>
+					</table>					
 					</center>
-          </div>
+					
+    </body>
 
-</body>
 </html>

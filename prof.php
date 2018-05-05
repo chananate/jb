@@ -7,17 +7,12 @@
     }
     echo "<br><br><br>";
 
-    $hostname = "localhost"; 
-    $usename = "root"; 
-    $password = ""; 
-    $database = "jb_shop"; 
-    $conn = mysql_connect($hostname,$usename,$password,$database) or die ("ติดต่อฐานข้อมูลไม่ได้");
-    mysql_query("SET NAMES UTF8",$conn);
-    mysql_select_db($database) or die ("เลือกฐานข้อมูลไม่ได้");
+    include 'connect.php';
 
     $sql='SELECT * FROM employee WHERE EmpID="'.$_SESSION["empID"].'" ';
-    $query = mysql_query($sql) or die ("pro error [".$sql."]");
-    $pro=mysql_fetch_assoc($query);
+    $query = $connect->query($sql);
+    $pro=$query->fetch_assoc();
+    
     // var_dump($pro);
     // exit();
    // $pro=$pro;
@@ -39,10 +34,10 @@
   </div>
   <div class="card-body">
     <p class="card-text">
-        <form action="edit-pro.php" method="post">
-       
-            <b>ID : </b><?=$pro["EmpID"];?><br>
-            <b>Type : </b><?=$pro['TypeID'];?><br>
+    <b>ID : </b><?=$pro["EmpID"];?><br>
+    <b>Type : </b><?=$pro['TypeID'];?>
+    <br>
+        <form action="editpro.php" method="post">
             <b>Name : </b><?=$pro['EmpName'];?><br>
             <b>Address : </b><?=$pro['EmpAddress'];?><br>
             <b>Tel. : </b><?=$pro['EmpTel'];?><br>
@@ -52,8 +47,13 @@
     </p>
   </div>
 </div>
+<br>
+<?php if($_SESSION['empType']=='ET1'){ ?>
+    <span style="font-size:1.5em">แก้ไขสิทธิ์ของพนักงาน </span><br>
+    <a href="edit-type.php"><button type="submit" class="btn btn-outline-danger btn-lg">Edit</button></a>
+<?php } ?>
 
 </center>
-
+<br><br>
 <?php include "footer.php"; 
 ?>

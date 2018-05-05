@@ -9,7 +9,7 @@ if(!isset($_POST['password']) || $_POST['password']==""){
     echo ('<script> alert("Password not found"); window.location="login.php";</script>');
 }
 $sql='SELECT * FROM employee WHERE username="'.$_POST["username"].
-'" and password="'.$_POST["password"].'" ';
+'" and password="'.md5($_POST["password"]).'" limit 1';
 
 $result = $connect->query($sql);
 $user = $result->fetch_assoc();

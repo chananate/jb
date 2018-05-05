@@ -9,6 +9,9 @@ $result=$connect->query($strSQL);
 ?>
 <br><br><br><br><br>
 <B style="font-size:2em;">สถานะของโต๊ะ ร้านอาหาร j&b</B><br><br>
+<a href="checkBill.php" style="text-decoration: none">
+<span style="font-size:1.5em;">>>เปลี่ยนสถานะโต๊ะ<<</span></a>
+<br><br>
 <center>
 <table width="40%" border="2" >
     <tr>

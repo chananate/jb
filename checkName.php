@@ -1,8 +1,8 @@
 <?php
 
-mysql_connect("localhost","root",""); 
-mysql_select_db("jb_shop"); 
-
+mysql_connect("127.0.0.1","root","");
+mysql_select_db("jb_shop");
+mysql_query("SET NAMES UTF8");
 $strSQL = "SELECT * FROM employee WHERE username = '".$_GET['username']."' "; 
 $objQuery = mysql_query($strSQL); 
 $intRows = mysql_num_rows($objQuery); 

@@ -50,11 +50,14 @@ $rootFloder="/jb/"
       </li>
       <?php } ?>
       <li class="nav-item">
+        <a class="nav-link" href="hot.php"> &nbsp;&nbsp;HOT &nbsp;&nbsp; </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="new.php"> &nbsp;&nbsp;TABLE &nbsp;&nbsp; </a>
       </li>
       <?php 
 			if(isset($_SESSION['empType']) && $_SESSION['empType']!=""){ 
-				if($_SESSION["empType"] =="ET1" && $_SESSION["empType"] =="ET2"){ ?>
+				if($_SESSION["empType"] =="ET1" || $_SESSION["empType"] =="ET2"){ ?>
 				<li class="nav-item">
 					<a class="nav-link" href="checkBill.php"> &nbsp;&nbsp;Check Bill &nbsp;&nbsp; </a>
 				</li>
@@ -74,12 +77,15 @@ $rootFloder="/jb/"
     <?php
       if(isset($_SESSION['name']) && $_SESSION['name']!=""){ 
         ?>
-        <li class="nav-item">
-        <a class="nav-link" href="prof.php">&nbsp;&nbsp;<?=$_SESSION['name']?></a>
-    </a></li>
-       <li class="nav-item">
-        <a class="nav-link" href="<?=$rootFloder?>logout.php"><i>(logout)</i></a>
-        </li>
+        <li class="nav-item dropdown dropdown-menu-left">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?=$_SESSION['username']?>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item " href="prof.php">PROFILE</a>
+        <a class="dropdown-item " href="logout.php">SIGN OUT</a>
+        </div>
+      </li>
       <?php }else{ ?>
       <li class="nav nav-item" >
         <a class="nav-link" href="<?=$rootFloder?>signup.php">SIGN UP</a>

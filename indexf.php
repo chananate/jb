@@ -34,13 +34,15 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
       <li class="nav-item ">
         <a class="nav-link" href="home.php">HOME &nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a>
       </li>
-      
+      <li class="nav-item">
+        <a class="nav-link" href="hot.php"> &nbsp;&nbsp;HOT &nbsp;&nbsp; </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="new.php"> &nbsp;&nbsp;TABLE &nbsp;&nbsp; </a>
       </li>
 			<?php 
 			if(isset($_SESSION['empType']) && $_SESSION['empType']!=""){ 
-				if($_SESSION["empType"] =="ET1" && $_SESSION["empType"] =="ET2"){ ?>
+				if($_SESSION["empType"] =="ET1" || $_SESSION["empType"] =="ET2"){ ?>
 				<li class="nav-item">
 					<a class="nav-link" href="checkBill.php"> &nbsp;&nbsp;Check Bill &nbsp;&nbsp; </a>
 				</li>
@@ -61,7 +63,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
       if(isset($_SESSION['name']) && $_SESSION['name']!=""){ 
         ?>
         <li class="nav-item">
-        <a class="nav-link" href="home.php">&nbsp;&nbsp;<?=$_SESSION['name']?></a>
+        <a class="nav-link" href="prof.php">&nbsp;&nbsp;<?=$_SESSION['name']?></a>
     </a></li>
        <li class="nav-item">
         <a class="nav-link" href="logout.php"><i>(logout)</i></a>
@@ -84,6 +86,10 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 <center>
 <a href="indexf.php" ><button type="button" class="btn btn-outline-success btn-lg">Foods</button></a> 
 | <a href="indexd.php" ><button type="button" class="btn btn-outline-info btn-lg">Drinks</button></a>
+<br>
+<a href="orderadminnew.php" ><button type="button" class="btn btn-outline-danger btn-lg">Edit</button></a>
+| <a href="insertfood.php" ><button type="button" class="btn btn-outline-primary btn-lg">Update new menu</button></a>
+
 </center>
 		<div id="container" style="margin-left:5%; margin-right:5%">
 			
@@ -107,18 +113,12 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 						<tbody>
 					  <?php
 						//while($objResult = mysql_fetch_array($objQuery))
-						$hostname = "localhost"; // ชื่อ Host
-						$usename = "root"; // username เข้าฐานข้อมูล
-						$password = ""; // password เข้าฐานข้อมูล
-						$database = "jb_shop"; // ฐานข้อมูล
-						$conn = mysql_connect($hostname,$usename,$password,$database) or die ("ติดต่อฐานข้อมูลไม่ได้");
-						mysql_query("SET NAMES UTF8",$conn);
-						mysql_select_db($database) or die ("เลือกฐานข้อมูลไม่ได้");
+						include 'connect.php';
 
 						$sql = "SELECT * FROM food"; // เลือก ตารางที่เราเก็บข้อมูล
-						$query = mysql_query($sql) or die ("sql error [".$sql."]");
+						$query = $connect->query($sql);
 
-						while($row = mysql_fetch_array($query)){
+						while($row = $query->fetch_assoc()){
               if($row['FoodTypeID']=="FT1"){
 					  ?>
 					  
@@ -134,7 +134,7 @@ if(!isset($_SESSION["username"]) ||$_SESSION["username"] ==""){
 						<td style="text-align:center;background-color:#FDF8D9;color:#000000"><?php echo $row["FoodPrice"];?> ฿ </td>
 						<?php if($row["FoodStatus"]==1){ ?>
 							<td style="text-align:center;background-color:#FDF8D9;color:#000000"><input type="hidden" name="txtFoodID" value="<?=$row["FoodID"];?>" size="1"> 
-													<input type="text" name="txtQty" value="1" style="width:30pt"> 
+													<input type="number" name="txtQty" value="1" style="width:30pt" min="1"> 
 							<input type="submit" value="Add"></td>
 							<?php }else{ ?>
 								<td style="text-align:center;background-color:#FDF8D9;color:red">out of stock</td>

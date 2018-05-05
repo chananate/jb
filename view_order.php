@@ -2,10 +2,7 @@
 
 <?php
 include 'headerr.php';
-?>
-
-				<?php
-					include 'connect.php';
+include 'connect.php';
 					
 					$strSQL = "SELECT * FROM orders WHERE OrderID = '".$_GET["strOrderID"]."' ";
 					$objQuery = mysql_query($strSQL)  or die(mysql_error());

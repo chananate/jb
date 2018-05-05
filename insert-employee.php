@@ -23,10 +23,6 @@ echo ("<script> alert('Please input Name!'); window.location='signup.php';</scri
 exit();
 }  
 
-if(trim($_POST["emptype"]) == ""){
-    echo ("<script> alert('Please input employee type!'); window.location='signup.php';</script>");
-    exit();
-    }  
 
 if(trim($_POST["tel"]) == ""){
     echo ("<script> alert('Please input tel!'); window.location='signup.php';</script>");
@@ -39,13 +35,13 @@ if($_POST["address"] ==""){
 		}
 
 
-				$stmt = $pdo->prepare("INSERT INTO employee VALUES ( '', ?, ?, ?, ?, ?, ?)");
-				$stmt->bindParam(1, $_POST["emptype"]);
-				$stmt->bindParam(2, $_POST["name"]);
-				$stmt->bindParam(3, $_POST["address"]);
-				$stmt->bindParam(4, $_POST["tel"]);
-				$stmt->bindParam(5, $_POST["username"]);
-				$stmt->bindParam(6, $_POST["password"]);
+				$stmt = $pdo->prepare("INSERT INTO employee VALUES ( '', 'ET3', ?, ?, ?, ?, ?)");
+				
+				$stmt->bindParam(1, $_POST["name"]);
+				$stmt->bindParam(2, $_POST["address"]);
+				$stmt->bindParam(3, $_POST["tel"]);
+				$stmt->bindParam(4, $_POST["username"]);
+				$stmt->bindParam(5, md5($_POST["password"]));
 				
 				$stmt->execute(); // เริ่มเพิ่มข้อมูล
 				$pid = $pdo->lastInsertId(); // ขอคยี ห์ ลกัทเี่ พมิ่ สา เร็จ
